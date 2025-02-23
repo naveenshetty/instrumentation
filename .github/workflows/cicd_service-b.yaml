@@ -53,7 +53,7 @@ jobs:
         git config --global user.name "Naveen"
         git pull origin main --rebase  # Fetch latest changes before updating     
 
-    - name: Update tag in Helm chart for service-a
+    - name: Update tag in Helm chart for service-b
       run: |
         sed -i '/serviceB:/,/tag:/s/tag: .*/tag: "${{ github.run_id }}"/' helm/instrumentation-chart/values.yaml
         cat helm/instrumentation-chart/values.yaml  # Verify the updated file
