@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - 'Application/Service-b/**'
-      - '.github/workflows/cicd-service-b.yaml'
+      - '.github/workflows/cicd_service-b.yaml'
 
 jobs:
   
