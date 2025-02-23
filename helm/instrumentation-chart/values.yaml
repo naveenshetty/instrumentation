@@ -8,4 +8,4 @@ image:
   serviceB:
     repository: naveen192/service-b
     pullPolicy: IfNotPresent
-    tag: "13482584667"
+    tag: "13482757812"
