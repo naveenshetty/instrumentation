@@ -34,7 +34,7 @@ jobs:
           context: ./Application/Service-a
           file: ./Application/Service-a/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/naveen192/service-a:${{github.run_id}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/service-a:${{github.run_id}}
 
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
