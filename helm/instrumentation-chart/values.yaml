@@ -4,7 +4,7 @@ image:
   serviceA:
     repository: naveen192/service-a
     pullPolicy: IfNotPresent
-    tag: "13482757811"
+    tag: "13483387954"
   serviceB:
     repository: naveen192/service-b
     pullPolicy: IfNotPresent
