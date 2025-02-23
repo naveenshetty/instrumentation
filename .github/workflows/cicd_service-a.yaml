@@ -34,29 +34,29 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/service-a:${{ github.run_id }}
 
       - name: Set image tag as output
-        run: echo "::set-output name=image_tag::${{ secrets.DOCKERHUB_USERNAME }}/service-a:${{ github.run_id }}"
+        run: echo "image_tag=${{ secrets.DOCKERHUB_USERNAME }}/service-a:${{ github.run_id }}" >> $GITHUB_ENV
 
   push:
-    needs: build
-    runs-on: ubuntu-latest
+      needs: build
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        - name: Login to DockerHub
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./Application/Service-a
-          file: ./Application/Service-a/Dockerfile
-          push: true
-          tags: ${{ needs.build.outputs.image_tag }}
+        - name: Push Docker image
+          uses: docker/build-push-action@v6
+          with:
+            context: ./Application/Service-a
+            file: ./Application/Service-a/Dockerfile
+            push: true
+            tags: ${{ env.image_tag }}
 
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
