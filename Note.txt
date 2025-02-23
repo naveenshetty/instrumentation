@@ -1,0 +1,3 @@
+docker build -t naveen192/service-a:v1 .
+
+docker run -p 3001:3001 -it naveen192/service-a:v1

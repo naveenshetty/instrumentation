@@ -1,0 +1,11 @@
+replicaCount: 1
+
+image:
+  serviceA:
+    repository: naveen192/service-a
+    pullPolicy: IfNotPresent
+    tag: "v1"  # The tag will be variable
+  serviceB:
+    repository: naveen192/service-b
+    pullPolicy: IfNotPresent
+    tag: "v1"  # The tag will be variable
