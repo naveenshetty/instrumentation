@@ -7,8 +7,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Application/Service-a/**'
+    paths-ignore:
+      - 'k8s/**'
+      - 'README.md'
 
 jobs:
   
