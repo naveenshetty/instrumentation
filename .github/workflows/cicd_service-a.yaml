@@ -51,7 +51,7 @@ jobs:
 
     - name: Update tag in Helm chart for service-a
       run: |
-        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/instrumentation-chart/values.yaml
+        sed -i '/serviceA:/,/tag:/s/tag: .*/tag: "${{ github.run_id }}"/' helm/instrumentation-chart/values.yaml
         cat helm/instrumentation-chart/values.yaml  # Verify the updated file
 
     - name: Commit and push changes
