@@ -4,8 +4,8 @@ image:
   serviceA:
     repository: naveen192/service-a
     pullPolicy: IfNotPresent
-    tag: "v1"  # The tag will be variable
+    tag: "13482520337"
   serviceB:
     repository: naveen192/service-b
     pullPolicy: IfNotPresent
-    tag: "v1"  # The tag will be variable
+    tag: "13482520337"
