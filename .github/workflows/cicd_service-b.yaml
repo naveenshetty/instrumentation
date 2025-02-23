@@ -15,8 +15,6 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
 
-    needs: build
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,7 +39,7 @@ jobs:
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
 
-    needs: push
+    needs: build_and_push
 
     steps:
     - name: Checkout repository
