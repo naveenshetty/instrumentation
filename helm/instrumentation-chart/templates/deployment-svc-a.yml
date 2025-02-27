@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: service-a-deployment
-    # run: service-a-deployment
   name: service-a-deployment
 spec:
   replicas: 1

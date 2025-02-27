@@ -12,7 +12,7 @@ hit the alb dns on browser , username admin , for password run below command
 `kubectl edit secret argocd-initial-admin-secret -n argocd
 `
 get password, it is base64 encoded one so decode it
-`echo NnI0NGJEelZYUDd5dTdJcQ== | base64 --decode
+`echo d3pVeFhKcDRsUExSNHZubw== | base64 --decode
 `
 access argocd from browser using external IP in 
 `kubectl get svc -n argocd

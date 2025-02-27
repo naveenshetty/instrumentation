@@ -4,3 +4,52 @@ docker run -p 3001:3001 -it naveen192/service-a:v1
 
 pod to crash continue
 kubectl run busybox-crash --image=busybox -- /bin/sh -c "exit 1"
+
+
+
+
+switch cluster
+
+for GKE only
+get GKE cluster list
+gcloud container clusters list
+
+kubectl config get-contexts
+switch if it is different (there is a * mark to show you are on whcih cluster)
+this has go-web-aboutme pipline
+kubectl config use-context gke_intense-plate-450717-f0_us-central1-c_threetire (this is cluster name)
+
+refresh it
+gcloud container clusters get-credentials threetire --zone us-central1-c --project intense-plate-450717-f0
+
+kubectl get all -n monitoring
+kubectl port-forward service/prometheus-operated -n monitoring 9090:9090
+
+for instrumention
+
+
+
+
+
+
+## For logging Elastic Search
+#  Create Namespace for Logging
+
+```bash
+kubectl create namespace logging
+helm repo add elastic https://helm.elastic.co
+
+helm install elasticsearch \
+ --set replicas=1 \
+ --set volumeClaimTemplate.storageClassName=standard \
+ --set persistence.labels.enabled=true elastic/elasticsearch -n logging
+```
+
+1. Watch all cluster members come up.
+  $ kubectl get pods --namespace=logging -l app=elasticsearch-master -w
+2. Retrieve elastic user's password.
+  $ kubectl get secrets --namespace=logging elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d
+3. Test cluster health using Helm test.
+  $ helm --namespace=logging test elasticsearch
+
+

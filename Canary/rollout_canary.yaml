@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: service-a-rollout
+  labels:
+    app: service-a
+spec:
+  replicas: 3
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20   # 20% traffic to new version
+        - pause: { duration: 2m }
+        - setWeight: 50   # 50% traffic
+        - pause: { duration: 2m }
+        - setWeight: 100  # Full rollout
+  selector:
+    matchLabels:
+      app: service-a
+  template:
+    metadata:
+      labels:
+        app: service-a
+    spec:
+      containers:
+      - name: service-a
+        image: naveen192/service-a:{{ .Values.image.serviceA.tag }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+        env:
+        - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+          value: "http://jaeger-collector.tracing:14268/api/traces"
+        - name: SERVICE_B_URI
+          value: "http://b-service.dev"
