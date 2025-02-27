@@ -1,11 +1,11 @@
 // service-a/index.js
 require('dotenv').config();
 require('./tracing'); // Add this line to initialize tracing
-const express = require('express');
+const express = require('express'); // Web framework to create APIs.
 const morgan = require('morgan');
-const pino = require('pino');
-const axios = require('axios');
-const promClient = require('prom-client');
+const pino = require('pino'); //Pino is a fast logger, and Morgan is a request logger middleware for Express.
+const axios = require('axios'); //For making http request
+const promClient = require('prom-client'); //for custom metrics
 
 const app = express();
 

@@ -26,10 +26,19 @@ kubectl get all -n monitoring
 kubectl port-forward service/prometheus-operated -n monitoring 9090:9090
 
 for instrumention
+kubectl config use-context gke_intense-plate-450717-f0_us-central1-c_ecommerce1
+https://34.44.5.6/
 
-
-
-
+hit the alb dns on browser , username admin , for password run below command
+`kubectl get secrets -n argocd
+`
+`kubectl edit secret argocd-initial-admin-secret -n argocd
+`
+get password, it is base64 encoded one so decode it
+`echo NnI0NGJEelZYUDd5dTdJcQ== | base64 --decode
+`
+access argocd from browser using external IP in
+`kubectl get svc -n argocd
 
 
 ## For logging Elastic Search
